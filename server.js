@@ -4,6 +4,7 @@ const cors = require('cors');
 const session = require('express-session');
 require('dotenv').config();
 // const pool = require('./db');
+const path = require('path');
 
 // ===== Configuration ===== //
 const app = express();
@@ -15,7 +16,10 @@ app.use(cors());
 
 app.use(express.json()); // Allowing us access to the request to body which returns json data
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static('client-frontend'));
+
+console.log(__dirname);
+console.log(path.join(__dirname, 'client-frontend'));
 
 // If you want to run sessions --
 app.use(session({
