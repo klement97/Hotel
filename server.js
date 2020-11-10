@@ -24,9 +24,9 @@ app.use(session({
     saveUninitialized: false
 }));
 
-app.get('/', (req,res) => {
-    res.send(`hotel reservation app ${PORT}`);
-})
+// app.get('/', (req,res) => {
+//     res.send(`hotel reservation app ${PORT}`);
+// })
 
 // ===== CONTROLLERS ===== //
 const reservationController = require('./controllers/reservation_controller.js');
