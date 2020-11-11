@@ -1,8 +1,22 @@
 <div class="search">
     <h2>Book a Room</h2>
-    Check-In: <input type="date"><br>
-    Check-Out: <input type="date"><br>
-    <input type="submit" value="Search" routerLink="/rooms">
-  </div>
+    Check-In: <input type="date" [(ngModel)]="checkIn"><br>
+    Check-Out: <input type="date" [(ngModel)]="checkOut"><br>
+    <input type="submit" value="Search" (click)="search()">
+</div>
 
-  <router-outlet></router-outlet>
+<table *ngIf="rooms">
+  <thead>
+      <th>Room #</th>
+      <th>Price Per Night</th>
+      <th>Maximum Occupancy</th>
+  </thead>
+  <tbody *ngFor="let room of rooms">
+      <th>{{room.room_number}}</th>
+      <th>{{room.price}}</th>
+      <th>{{room.max_occupancy}}</th>
+      <th><button (click)="reserve()">RESERVE</button></th>
+  </tbody>
+</table>
+
+<router-outlet></router-outlet>

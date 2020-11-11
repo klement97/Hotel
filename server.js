@@ -1,5 +1,6 @@
 // ===== Dependencies ===== //
 const express = require('express');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 require('dotenv').config();
@@ -16,10 +17,11 @@ app.use(cors());
 
 app.use(express.json()); // Allowing us access to the request to body which returns json data
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'client-frontend')));
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/dist/'));
 
-// console.log(__dirname);
-// console.log(path.join(__dirname, 'client-frontend'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // If you want to run sessions --
 app.use(session({
@@ -31,6 +33,10 @@ app.use(session({
 // app.get('/', (req,res) => {
 //     res.send(`hotel reservation app ${PORT}`);
 // })
+
+// app.get('/', (req,res) => {
+//     res.json({ info: 'Node.js,Express, and Postgres API'});
+// });
 
 // ===== CONTROLLERS ===== //
 const reservationController = require('./controllers/reservation_controller.js');
